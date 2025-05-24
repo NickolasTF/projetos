@@ -1,0 +1,51 @@
+* {
+  font-family: 'EB Garamond',Georgia, 'Times New Roman', Times, serif;
+  margin: 0;
+  padding: 0;
+
+}
+
+
+.board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin: 15px;
+}
+
+.square {
+  text-align: center;
+  padding: 32px;
+  border: 1px solid black;
+}
+
+.square:hover {
+  cursor: pointer; /* tem q fazer isso apenas quando tiver uma peça dentro desse quadrado */
+}
+
+.board > div:nth-child(odd) > div:nth-child(even),
+.board > div:nth-child(even) > div:nth-child(odd) {
+  background-color: #B58863;
+}
+
+.board > div:nth-child(odd) > div:nth-child(odd),
+.board > div:nth-child(even) > div:nth-child(even) {
+  background-color: #F0D9B5;
+}
+
+
+.board > div > div.square:active {
+  background-color: #765517;
+  border: 1px solid #cfc3ae;
+  transition: background-color .4s;
+/* tem q fazer isso apenas quando tiver uma peça dentro desse quadrado */
+}
+
+
+
+
+
+
+
+
+
+
