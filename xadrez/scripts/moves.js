@@ -1,7 +1,33 @@
-function move(piece, square) {
+const whitePieces = 'rnbqkp'
+const blackPieces = 'RNBQKP'
+knightMove();
+function move(/* piece, square */) {
+  
+  /* aqui o codigo q me entrega o tipo (black or white), a casa dela e a peça
+  ------------------DESCOMENTAR OS PARAMETROS DA FUNÇÃO TB------------------------
+    // piece = 'N' \\\ square(chega s-44)= 44 \\\ type = 'black'(ou'white')
+  
+  let type = '';
+  if(whitePieces.includes(piece)) {
+    type = 'white';
+  } else if(blackPieces.includes(piece)) {
+    type = 'black';
+  }
+  
+  square = square.split('-')[1]
+
+  */
+
+const piece = 'N'; // isso aqui eu uso pra chamar a função correspondente a peça
+// os dois abaixo passo como paramentros
+let square = 44;
+let type = 'black';
+
+
+
 //on click() = "move('N', `${qual quadrado ela esta}`)" daqui eu verifico q q eu posso fazer com essa peça, (q cor ela eh) o q vou passar pra a função peçaMove() e (a partir desse quadrado pra onde ela pode ir)retorno da função peçaMove()
 
-
+// funcão | if else -> para verificar se eh branca ou preta e qual tipo da peça daqui eu passo pra função peçaMove() correspondente
 
 
 /*
@@ -17,32 +43,52 @@ on click() eu passo a string associada como parametro pra k e daqui eu chamo a f
 
 
 
-function rookMove() {
-
-
-
-
-
-
+function rookMove(square,type) {
 
 }
 
 
 
-function knightMove() {
+function knightMove(/* square,type */) {
+//-------------------------DESCOMENTAR OS PARAMETROS----------------------------------
+let square = '81';
+let type = 'black';
 
-//primeiro verifico se eh branca ou preta(posso receber como parametro da função move, q vai me trazer pra k e vai dizer se eh B || W), pra q no final eu possa comparar com qual time ela pertence e verificar se o movimento eh valido ou n
 
 /* 
-primeiramente tenho q fazer um movimento valido 
-
-dado tal casa q essa peça está eu retorno quais possiveis casas ela pode ir e faço os proximos passos
-
-por exemplo: cavalo(pq ele pula fica mais facil 1°) anda uma na horizontal e 3 na vertical || uma na vertical e 3 na horizontal
 
 dps tenho q ver se vai cair em uma casa com uma peça aliada se sim, n pode, se n substitui a peça inimiga por essa 
 
 */
+const moves = [];
+const squareLine = Number(square.split('')[0])
+const squareColumn = Number(square.split('')[1])
+
+moves.push([squareLine+2,squareColumn-1]);
+moves.push([squareLine+2,squareColumn+1]);
+
+moves.push([squareLine+1,squareColumn+2]);
+moves.push([squareLine-1,squareColumn+2]);
+
+moves.push([squareLine-2,squareColumn+1]);
+moves.push([squareLine-2,squareColumn-1]);
+
+moves.push([squareLine-1,squareColumn-2]);
+moves.push([squareLine+1,squareColumn-2]);
+
+
+for(let i = moves.length-1; i >= 0; i--) {
+  const [linha,coluna] = moves[i]
+  
+  if(linha > 8 || linha < 1 || coluna > 8 || coluna < 1)  {
+    moves.splice(i,1)
+  }
+  
+}
+
+//aqui a variavel moves, contem todas as possiveis casas q essa peça pode ir a partir da q ele estava, basta verificar se tem uma aliada la ou uma inimiga e comer a inimiga ou retirar das possibilidades a aliada
+
+
 
 
 
@@ -55,25 +101,25 @@ dps tenho q ver se vai cair em uma casa com uma peça aliada se sim, n pode, se 
 
 
 
-function bishopMove() {
+function bishopMove(square,type) {
 
 }
 
 
 
-function queenMove() {
+function queenMove(square,type) {
 
 }
 
 
 
-function kingMove() {
+function kingMove(square,type) {
 
 }
 
 
 
-function pawnMove() {
+function pawnMove(square,type) {
 
 }
 
