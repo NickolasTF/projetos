@@ -14,7 +14,7 @@
 
 .square {
   text-align: center;
-  padding: 32px;
+  padding: 32px; /* fazer mediaQuery dps pra ficar quadrado em qlqr tela */
   border: 1px solid black;
 }
 
