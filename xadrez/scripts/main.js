@@ -1,15 +1,17 @@
 //to querendo gerar as divs pelo JS e ai a div q tiver uma letra será clicavel
 
 // primeiro eu faço uma matriz com todas as peças, assim eu associo essa matriz com o tabuleiro(square-ij) dps faço o JS pra cada movimento de peça, vendo onde ela ta e onde ela pode ir dps eh so ver se ja tem uma peça la e fazer a relação
-const board2 = [
-  ['81','82','83','84','85','86','87','88'],
-  ['71','72','73','74','75','76','77','78'],
-  ['61','62','X','64','X','66','67','68'],
-  ['51','X','53','54','55','X','57','58'],
-  ['41','42','43','N','45','46','47','48'],
-  ['31','X','33','34','35','X','37','38'],
-  ['21','22','X','24','X','26','27','28'],
-  ['11','12','13','14','15','16','17','18']
+
+//esse board tem q ficar na função move
+const board = [
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','N','','','',''],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','','','','',''],
+  ['','','','','','','','']
 ];
 
 
@@ -24,7 +26,7 @@ for (let i  = 0; i < 8; i++) {
     const coluna = j+1;
     const square = document.querySelector(`.s-${linha}${coluna}`);
 
-    square.innerHTML = board2[i][j] // ${linha}${coluna}
+    square.innerHTML = board[i][j] // ${linha}${coluna}
 
   }
 
