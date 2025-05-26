@@ -51,7 +51,7 @@ function rookMove(square,type) {
 
 function knightMove(/* square,type,board */) {
 //-----------------------------------DESCOMENTAR OS PARAMETROS--------------------------
-const square = '44';
+const square = '81';
 const type = 'black';
 const board2 = [
   ['81','82','83','84','85','86','87','88'],
@@ -67,7 +67,7 @@ const board2 = [
 
 /* 
 let allyPieces;
-let enemyPieces
+let enemyPieces;
 const moves = [];
 const squareLine = Number(square.split('')[0])
 const squareColumn = Number(square.split('')[1])
@@ -110,11 +110,39 @@ for (let i = moves.length-1; i >= 0 ; i--) {
 */
 //-------------------VOU REESCREVER ESSE CODIGO USANDO FUNÇÕES---------------------
 
+const squareLine = Number(square.split('')[0]);
+const squareColumn = Number(square.split('')[1]);
+let allyPieces;
+
+if(type === 'black') {
+  allyPieces = 'RNBQKP'
+}else {
+  allyPieces = 'rnbqkp'
+}
+
+function getHorseMoves(squareLine,squareColumn) {
+  return [
+    [squareLine + 2, squareColumn - 1],
+    [squareLine + 2, squareColumn + 1],
+
+    [squareLine + 1, squareColumn + 2],
+    [squareLine - 1, squareColumn + 2],
+
+    [squareLine - 2, squareColumn + 1],
+    [squareLine - 2, squareColumn - 1],
+
+    [squareLine - 1, squareColumn - 2],
+    [squareLine + 1, squareColumn - 2],
+  ];
+}
+
+function boardFilter(l,c) {
+  return l > 0 && l < 9 && c > 0 && c < 9 && !allyPieces.includes(board2[8-l][c-1]);
+
+}
 
 
-
-
-
+const moves = getHorseMoves(squareLine,squareColumn);
 
 
 
@@ -123,7 +151,7 @@ for (let i = moves.length-1; i >= 0 ; i--) {
 
 
 /*
-----------CODIGO PRA TRANSFORMAR O VETOR DE MOVES EM UM VETOR COM AS CLASSES DAS DIVS Q POSSO IR-----------------
+---------CODIGO PRA TRANSFORMAR O VETOR DE MOVES EM UM VETOR COM AS CLASSES DAS DIVS Q POSSO IR--------
 const availableSquares = [];
 for (let i = 0; i < moves.length; i++) {
   availableSquares.push(`s-${moves[i][0]}${moves[i][1]}`);
