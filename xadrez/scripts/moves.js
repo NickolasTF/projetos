@@ -1,6 +1,6 @@
 const whitePieces = 'rnbqkp'
 const blackPieces = 'RNBQKP'
-move();
+rookMove();
 
 function move(/* piece, square, board */) {
 const pieceFunction = {
@@ -12,14 +12,14 @@ const pieceFunction = {
   p: pawnMove
 }
 const board = [
-  ['','','','','','','',''],
-  ['','','','','','','',''],
-  ['','','','','','','',''],
-  ['','','','N','','','',''],
-  ['','','','','','','',''],
-  ['','','','','','','',''],
-  ['','','','','','','',''],
-  ['','','','','','','','']
+  ['81','82','83','84','85','86','87','88'],
+  ['71','72','73','74','75','76','77','78'],
+  ['61','62','63','64','65','66','67','68'],
+  ['51','52','53','54','55','56','57','58'],
+  ['41','42','43','R','45','46','47','48'],
+  ['31','32','33','34','35','36','37','38'],
+  ['21','22','23','24','25','26','27','28'],
+  ['11','12','13','14','15','16','17','18']
 ];
 
 /* aqui abaixo o codigo q me entrega o tipo (black or white), a casa dela e a peça
@@ -37,11 +37,11 @@ square = square.split('-')[1]
 
 */
 
-const piece = 'N';
+const piece = 'R';
 let square = '44';
 let type = 'black';
-const pieceMove = pieceFunction[piece.toLowerCase()]
-const validMoves = pieceMove(square,type,board)
+const pieceMove = pieceFunction[piece.toLowerCase()];
+const validMoves = pieceMove(square,type,board);//recebendo os movimentos validos da função peçaMove()
 
 const possibleMoves = board.map(row => [...row]);//criando uma copia de board
 
@@ -49,10 +49,6 @@ validMoves.forEach(([l,c]) => possibleMoves[8-l][c-1] = piece);
 
 
 
-
-
-
-//printBoard(possibleMoves)
 
 function printBoard(board) {
   for (let i = 0; i < 8; i++) {
@@ -138,8 +134,101 @@ on click() eu passo a string associada como parametro pra k e daqui eu chamo a f
 }
 
 
+function rookMove(/* square,type,board */) {
+  const board = [
+  ['81','82','83','84','85','86','87','88'],
+  ['71','72','73','74','75','76','77','78'],
+  ['61','62','63','64','65','66','67','68'],
+  ['51','52','53','54','55','56','57','58'],
+  ['41','42','43','R','45','46','47','48'],
+  ['31','32','33','34','35','36','37','38'],
+  ['21','22','23','24','25','26','27','28'],
+  ['11','12','13','14','15','16','17','18']
+];
 
-function rookMove(square,type) {
+  let square = '44';
+  let type = 'black';
+  const squareLine = Number(square.split('')[0]);
+  const squareColumn = Number(square.split('')[1]);
+  const allPieces = 'RNBQKPrnbqkp'
+  let allyPieces;
+
+  if(type === 'black') {
+    allyPieces = 'RNBQKP'
+  }else {
+    allyPieces = 'rnbqkp'
+  }
+
+  getRookMoves(squareLine,squareColumn);
+
+  function getRookMoves(squareLine,squareColumn) {
+    /*
+    ------------------GENERICO DE CALCULAR OS MOVIMENTOS RETILINEOS-----------------------------
+    
+   const moves = [];
+
+   //pra cima //i = 1 2 3 4
+    for (let i = 1; i < 9 - squareLine; i++) {
+      const l = squareLine + i;
+      const c = squareColumn;
+      const squarePiece = board[8-l][c-1];
+      if(squarePiece !== '' && allPieces.includes(squarePiece)) { 
+        if (allyPieces.includes(squarePiece)) {
+          break
+        }else {
+          moves.push([l, c]);
+          break
+        }
+      }
+      moves.push([l, c]);
+    }
+
+   //pra baixo
+   for (let i = squareLine - 1; i > 0; i--) {
+
+      moves.push([i, squareColumn]);
+
+    }
+   //pra esquerda
+    for (let i = squareColumn - 1; i > 0 ; i--) {
+
+      moves.push([squareLine, i]);
+
+    }
+   //pra direita
+    for (let i = 1; i < 9 - squareColumn; i++) {
+
+      moves.push([squareLine,squareColumn + i]);
+
+    }
+    */
+
+
+    //FAZER UMA FUNÇÃO GERENERICA PRA MOVIMENTOS RETILINEOS CIMA BAIXO DIGONAIS... USANDO LOGICA DO PLANO CARTESIANO +1 +1 NO PRIMEIRO QUADRANTE -1 +1 PRO SEGUNDO... E USAR ESSA FUNÇÃO PRAS PEÇAS TORRE BISPO RAINHA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+
+    vou fazer um loop q vai me dar todas as casas q ele pode ocupar e salvar em um array, caso tenha uma peça no caminho se for aliada para essa direção se for inimiga essa eh a ultima casa q posso adicionar, o bom disso eh q vou evitar o boardFilter, ja q aqui consigo fazer o loop parar qnd for 0<x<9 e quando achar uma aliada e quando achar uma inimiga adicionar esse square como ultimo 
+
+    */
+
+
+
+  }
 
 }
 
