@@ -17,7 +17,7 @@ function move(/* piece,square,board */) {
   ['61','62','63','64','65','K','67','68'],
   ['51','52','53','54','p','p','p','58'],
   ['41','42','43','44','p','Q','p','48'],
-  ['31','32','33','K','p','p','p','38'],
+  ['31','32','33','B','p','p','p','38'],
   ['21','22','23','24','25','26','27','28'],
   ['11','12','13','14','15','16','17','18']
 ];
@@ -37,8 +37,8 @@ function move(/* piece,square,board */) {
 
   */
 
-  const piece = 'Q';
-  let square = '46';
+  const piece = 'K';
+  let square = '88';
   let type = 'black';
   const pieceMove = pieceFunction[piece.toLowerCase()];
   const validMoves = pieceMove(square,type,board);//recebendo os movimentos validos da função peçaMove()
@@ -339,15 +339,48 @@ function queenMove(square,type,board) {
   return moves
 }
 
+function kingMove(square,type,board) {
+  
+  let squareLine = Number(square.split('')[0]);
+  let squareColumn = Number(square.split('')[1]);
+  let allyPieces;
+  const moves = [];
+  
+  if(type === 'black') {
+    allyPieces = 'RNBQKP';
+  }else {
+    allyPieces = 'rnbqkp';
+  }
 
 
-function kingMove(square,type) {
+
+  moves.push([squareLine + 1 , squareColumn + 1]);
+  moves.push([squareLine + 1 , squareColumn]);
+  moves.push([squareLine + 1 , squareColumn - 1]);
+  moves.push([squareLine, squareColumn - 1]);
+  moves.push([squareLine - 1 , squareColumn - 1]);
+  moves.push([squareLine - 1 , squareColumn]);
+  moves.push([squareLine - 1 , squareColumn + 1]);
+  moves.push([squareLine, squareColumn + 1]);
+  
+
+
+  function boardFilter(l,c) {
+    if (l < 1 || l > 8 || c < 1 || c > 8){
+      return false
+    } 
+
+    const squarePiece = board[8-l][c-1];
+    return l > 0 && l < 9 && c > 0 && c < 9 && (squarePiece === '' || !allyPieces.includes(squarePiece));
+
+  }
+  return moves.filter(([l,c]) => boardFilter(l,c))
 
 }
 
+function pawnMove(square,type,board) {
 
 
-function pawnMove(square,type) {
 
 }
 
