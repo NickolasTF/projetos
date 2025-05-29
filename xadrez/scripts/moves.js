@@ -1,8 +1,23 @@
 const whitePieces = 'rnbqkp'
 const blackPieces = 'RNBQKP'
-move();
 
-function move(/* piece,square,board */) {
+//qnd eu clicar eu vou pegar o innerHTML e colocar como primeiro parametro q passo pra função move, 
+
+//recebendo piece = 'N' \\\ square(chega s-44)=> '44' \\\ board atual
+function move(piece,square,board) {
+
+  const board = [
+  ["R","N","B","Q","K","B","N","R"],//8
+  ["P","P","P","P","P","P","P","P"],//7
+  ["","","","","","","",""],//6
+  ["","","","","","","",""],//5
+  ["","","","","","","",""],//4
+  ["","","","","","","",""],//3
+  ["p","p","p","p","p","p","p","p"],//2
+  ["r","n","b","q","k","b","n","r"]//1
+];
+
+
   const pieceFunction = {
     r: rookMove,
     n: knightMove,
@@ -11,20 +26,6 @@ function move(/* piece,square,board */) {
     k: kingMove,
     p: pawnMove
   }
-  const board = [
-    ['r', '', '', '', 'k', '', '', 'n'],
-    ['', '', '', '', '', 'P', '', ''],
-    ['B', '', 'Q', '', '', '', 'n', ''],
-    ['', 'p', '', 'K', '', '', '', 'p'],
-    ['P', '', '', '', '', '', '', ''],
-    ['', '', 'N', '', '', 'B', '', 'R'],
-    ['', 'P', '', '', 'P', '', '', ''],
-    ['N', '', '', '', 'K', '', '', 'R']
-  ];
-
-  /* aqui abaixo o codigo q me entrega o tipo (black or white), a casa dela e a peça
-  ------------------DESCOMENTAR OS PARAMETROS DA FUNÇÃO TB------------------------
-    // piece = 'N' \\\ square(chega s-44)= '44' \\\ type = 'black'(ou'white')
 
   let type = '';
   if(whitePieces.includes(piece)) {
@@ -35,43 +36,7 @@ function move(/* piece,square,board */) {
 
   square = square.split('-')[1]
 
-  */
-
-  const piece = 'p';
-  let square = '52';
-  let type = 'white';
-  const pieceMove = pieceFunction[piece.toLowerCase()];
-  const validMoves = pieceMove(square,type,board);//recebendo os movimentos validos da função peçaMove()
-
-  const possibleMoves = board.map(row => [...row]);//criando uma copia de board
-
-  validMoves.forEach(([l,c]) => possibleMoves[8-l][c-1] = piece);
-
-  printBoard(possibleMoves)
-
-
-  function printBoard(board) {
-    for (let i = 0; i < 8; i++) {
-      const linha = 8 - i; // linha real (de 8 a 1)
-      const row = board[i].map(cell => cell || '..').join(' ');
-      console.log(linha + ' ' + row);
-    }
-    console.log('  a  b  c  d  e  f  g  h');
-  }
-
-
-
-  /*aqui em validMoves eu tenho um vetor do tipo [ [ 6, 5 ], [ 5, 6 ], [ 3, 6 ], [ 2, 5 ], [ 3, 2 ] ] onde o movimento eh da peça 'N' no 44
-  [ 
-    ['81','82','83','84','85','86','87','88'],
-    ['71','72','73','74','75','76','77','78'],
-    ['61','62','N','64','n','66','67','68'],
-    ['51','K','53','54','55','b','57','58'],
-    ['41','42','43','N','45','46','47','48'],
-    ['31','32','33','34','35','a','37','38'],
-    ['21','22','B','24','b','26','27','28'],
-    ['11','12','13','14','15','16','17','18']
-  ];
+  /*
 
   PRA TRANSFORMAR ISSO NAS CLASSES DAS DIVS 
   usando for
@@ -87,20 +52,39 @@ function move(/* piece,square,board */) {
   usando map
   validMoves = validMoves.map(([linha,coluna]) => [`s-${linha}${coluna}`]);
 
-  validMoves = [
-    [ 's-65' ],
-    [ 's-56' ],
-    [ 's-36' ],
-    [ 's-25' ],
-    [ 's-32' ]
-  ]
   */
 
 
+  
+  const pieceMove = pieceFunction[piece.toLowerCase()];
+  const validMoves = pieceMove(square,type,board);//recebendo os movimentos validos da função peçaMove()
+
+  const possibleMoves = board.map(row => [...row]);//criando uma copia de board
+
+  validMoves.forEach(([l,c]) => possibleMoves[8-l][c-1] = piece);//colocando uma peça nos quadrados possiveis
+
+// aqui eu tenho um tabuleiro com os movimentos possiveis
 
 
 
-  //on click() = "move('N', `${qual quadrado ela esta}`)" daqui eu verifico q q eu posso fazer com essa peça, (q cor ela eh) o q vou passar pra a função peçaMove() e (a partir desse quadrado pra onde ela pode ir)retorno da função peçaMove()
+
+
+
+
+
+  printBoard(possibleMoves)
+
+
+  function printBoard(board) {
+    for (let i = 0; i < 8; i++) {
+      const linha = 8 - i;
+      const row = board[i].map(cell => cell || '.').join(' ');
+      console.log(linha + ' ' + row);
+    }
+    console.log('  a b c d e f g h');
+  }
+
+
 
 
   /*

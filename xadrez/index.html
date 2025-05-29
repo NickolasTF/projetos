@@ -19,106 +19,108 @@
   <main class="board">
 
     <div class="first-column">
-      <div class="a8 square s-81">8a</div>
-      <div class="a7 square s-71">7a</div>
+      <div class="a8 square s-81">R</div>
+      <div class="a7 square s-71">P</div>
       <div class="a6 square s-61">6a</div>
       <div class="a5 square s-51">5a</div>
       <div class="a4 square s-41">4a</div>
       <div class="a3 square s-31">3a</div>
-      <div class="a2 square s-21">2a</div>
-      <div class="a1 square s-11">1a</div>
+      <div class="a2 square s-21">p</div>
+      <div class="a1 square s-11">r</div>
     </div>
 
 
 
     <div class="second-column">
-      <div class="b8 square s-82">8b</div>
-      <div class="b7 square s-72">7b</div>
+      <div class="b8 square s-82" onclick="
+        move(this.innerHTML, this.className.split(' ')[2])
+        ">N</div>
+      <div class="b7 square s-72">P</div>
       <div class="b6 square s-62">6b</div>
       <div class="b5 square s-52">5b</div>
       <div class="b4 square s-42">4b</div>
       <div class="b3 square s-32">3b</div>
-      <div class="b2 square s-22">2b</div>
-      <div class="b1 square s-12">1b</div>
+      <div class="b2 square s-22">p</div>
+      <div class="b1 square s-12">n</div>
     </div>
 
 
 
     <div class="third-column">
-      <div class="c8 square s-83">8c</div>
-      <div class="c7 square s-73">7c</div>
+      <div class="c8 square s-83">B</div>
+      <div class="c7 square s-73">P</div>
       <div class="c6 square s-63">6c</div>
       <div class="c5 square s-53">5c</div>
       <div class="c4 square s-43">4c</div>
       <div class="c3 square s-33">3c</div>
-      <div class="c2 square s-23">2c</div>
-      <div class="c1 square s-13">1c</div>
+      <div class="c2 square s-23">p</div>
+      <div class="c1 square s-13">b</div>
     </div>
 
 
 
     <div class="fourth-column">
-      <div class="d8 square s-84">8d</div>
-      <div class="d7 square s-74">7d</div>
+      <div class="d8 square s-84">Q</div>
+      <div class="d7 square s-74">P</div>
       <div class="d6 square s-64">6d</div>
       <div class="d5 square s-54">5d</div>
       <div class="d4 square s-44" onclick="
       move('N','s-44')">4d</div>
       <div class="d3 square s-34">3d</div>
-      <div class="d2 square s-24">2d</div>
-      <div class="d1 square s-14">1d</div>
+      <div class="d2 square s-24">p</div>
+      <div class="d1 square s-14">q</div>
     </div>
 
 
 
     <div class="fifth-column">
-      <div class="e8 square s-85">8e</div>
-      <div class="e7 square s-75">7e</div>
+      <div class="e8 square s-85">K</div>
+      <div class="e7 square s-75">P</div>
       <div class="e6 square s-65">6e</div>
       <div class="e5 square s-55">5e</div>
       <div class="e4 square s-45">4e</div>
       <div class="e3 square s-35">3e</div>
-      <div class="e2 square s-25">2e</div>
-      <div class="e1 square s-15">1e</div>
+      <div class="e2 square s-25">p</div>
+      <div class="e1 square s-15">k</div>
     </div>
 
 
 
     <div class="sixth-column">
-      <div class="f8 square s-86">8f</div>
-      <div class="f7 square s-76">7f</div>
+      <div class="f8 square s-86">B</div>
+      <div class="f7 square s-76">P</div>
       <div class="f6 square s-66">6f</div>
       <div class="f5 square s-56">5f</div>
       <div class="f4 square s-46">4f</div>
       <div class="f3 square s-36">3f</div>
-      <div class="f2 square s-26">2f</div>
-      <div class="f1 square s-16">1f</div>
+      <div class="f2 square s-26">p</div>
+      <div class="f1 square s-16">b</div>
     </div>
 
 
 
     <div class="seventh-column">
-      <div class="g8 square s-87">8g</div>
-      <div class="g7 square s-77">7g</div>
+      <div class="g8 square s-87">N</div>
+      <div class="g7 square s-77">P</div>
       <div class="g6 square s-67">6g</div>
       <div class="g5 square s-57">5g</div>
       <div class="g4 square s-47">4g</div>
       <div class="g3 square s-37">3g</div>
-      <div class="g2 square s-27">2g</div>
-      <div class="g1 square s-17">1g</div>
+      <div class="g2 square s-27">p</div>
+      <div class="g1 square s-17">n</div>
     </div>
 
 
 
     <div class="eighth-column">
-      <div class="h8 square s-88">8h</div>
-      <div class="h7 square s-78">7h</div>
+      <div class="h8 square s-88">R</div>
+      <div class="h7 square s-78">P</div>
       <div class="h6 square s-68">6h</div>
       <div class="h5 square s-58">5h</div>
       <div class="h4 square s-48">4h</div>
       <div class="h3 square s-38">3h</div>
-      <div class="h2 square s-28">2h</div>
-      <div class="h1 square s-18">1h</div>
+      <div class="h2 square s-28">p</div>
+      <div class="h1 square s-18">r</div>
     </div>
 
 

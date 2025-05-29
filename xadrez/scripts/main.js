@@ -2,19 +2,11 @@
 
 // primeiro eu faço uma matriz com todas as peças, assim eu associo essa matriz com o tabuleiro(square-ij) dps faço o JS pra cada movimento de peça, vendo onde ela ta e onde ela pode ir dps eh so ver se ja tem uma peça la e fazer a relação
 
-//esse board tem q ficar na função move
-const board = [
-  ['81','82','83','84','85','86','87','88'],
-  ['71','72','73','74','75','76','77','78'],
-  ['61','62','63','64','65','66','67','68'],
-  ['51','52','53','54','55','56','57','58'],
-  ['41','42','43','44','45','46','47','48'],
-  ['31','32','33','34','35','36','37','38'],
-  ['21','22','23','24','25','26','27','28'],
-  ['11','12','13','14','15','16','17','18']
-];
 
 
+
+/*
+posso passar isso aqui pra função move(), e ja gerar o tabuleiro por la, ou seja, a função move() fica responsavel por pegar os movimentor e gerar o tabuleiro ou passar pra outra q gere o tabuleiro, recebendo o board atual e o nextBoard()
 
 const columns = 'abcdefgh';
 
@@ -30,10 +22,11 @@ for (let i  = 0; i < 8; i++) {
 
   }
 
-}
+} */
 
 
 /*
+-------------------------BOARDS EXEMPLOS-------------------------
 const board1 = [
   ['8a','8b','8c','8d','8e','8f','8g','8h'],
   ['7a','7b','7c','7d','7e','7f','7g','7h'],
@@ -66,8 +59,6 @@ const board3 = [
   ['','','','','','','',''],
   ['','','','','','','','']
 ];
-
-
 // maiusculas -> black, minusculas -> white
 
 const board = [
@@ -81,10 +72,11 @@ const board = [
   ["r","n","b","q","k","b","n","r"]//1
 ];
 
+*/
 
 
- PRIMEIRO PASSO COLOCAR AS CASAS COM OS NOMES DAS PEÇAS (R -> ROOK PRETO, r -> ROOK BRANCO)
- DPS FAZER O MOVIMENTO DELAS COM EXEMPLO COLOCA UMA MATRIZ COM A PEÇA TESTE NO CENTRO E VAI TESTANDO ALGUNS CASOS E ESCREVENDO O CODIGO
- POR FIM INCORPORAR AS IMAGENS DE CADA PEÇA 
- 
- */
+
+
+
+//PRIMEIRA IDEIA EH CRIAR UMA FUNÇÃO AQUI Q SERA CHAMADA
+// OU SEJA ESSE ARQUIVO, MAIN.JS, FICARA RESPONSAVEL POR CUIDAR DO BOARD, SEJA O PROXIMO O ATUAL E GERAR ELE NA PAGINA
