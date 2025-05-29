@@ -12,15 +12,15 @@ function move(/* piece,square,board */) {
     p: pawnMove
   }
   const board = [
-  ['81','82','83','84','85','86','87','88'],
-  ['71','72','73','74','75','76','77','78'],
-  ['61','62','63','64','65','K','67','68'],
-  ['51','52','53','54','p','p','p','58'],
-  ['41','42','43','44','p','Q','p','48'],
-  ['31','32','33','B','p','p','p','38'],
-  ['21','22','23','24','25','26','27','28'],
-  ['11','12','13','14','15','16','17','18']
-];
+    ['r', '', '', '', 'k', '', '', 'n'],
+    ['', '', '', '', '', 'P', '', ''],
+    ['B', '', 'Q', '', '', '', 'n', ''],
+    ['', 'p', '', 'K', '', '', '', 'p'],
+    ['P', '', '', '', '', '', '', ''],
+    ['', '', 'N', '', '', 'B', '', 'R'],
+    ['', 'P', '', '', 'P', '', '', ''],
+    ['N', '', '', '', 'K', '', '', 'R']
+  ];
 
   /* aqui abaixo o codigo q me entrega o tipo (black or white), a casa dela e a peça
   ------------------DESCOMENTAR OS PARAMETROS DA FUNÇÃO TB------------------------
@@ -37,9 +37,9 @@ function move(/* piece,square,board */) {
 
   */
 
-  const piece = 'K';
-  let square = '88';
-  let type = 'black';
+  const piece = 'p';
+  let square = '52';
+  let type = 'white';
   const pieceMove = pieceFunction[piece.toLowerCase()];
   const validMoves = pieceMove(square,type,board);//recebendo os movimentos validos da função peçaMove()
 
@@ -115,6 +115,14 @@ function move(/* piece,square,board */) {
 
 }
 
+function getAllyPieces(type) {
+  if(type === 'black') {
+    return 'RNBQKP';
+  }else {
+    return 'rnbqkp';
+  }
+}
+
 function linearMoves(square, dx, dy, allyPieces, board) {
   
   let squareLine = Number(square.split('')[0]);
@@ -149,13 +157,8 @@ function linearMoves(square, dx, dy, allyPieces, board) {
 
 function rookMove(square,type,board) {
 
-  let allyPieces;
+  const allyPieces = getAllyPieces(type);
   
-  if(type === 'black') {
-    allyPieces = 'RNBQKP'
-  }else {
-    allyPieces = 'rnbqkp'
-  }
   const moves = [];
 
   linearMoves(square,+1,0,allyPieces,board).forEach(([l,c]) => moves.push([l,c]));
@@ -258,13 +261,7 @@ for (let i = moves.length-1; i >= 0 ; i--) {
 //-------------------VOU REESCREVER ESSE CODIGO USANDO FUNÇÕES---------------------
   const squareLine = Number(square.split('')[0]);
   const squareColumn = Number(square.split('')[1]);
-  let allyPieces;
-
-  if(type === 'black') {
-    allyPieces = 'RNBQKP'
-  }else {
-    allyPieces = 'rnbqkp'
-    }
+  const allyPieces = getAllyPieces(type);
 
   function getHorseMoves(squareLine,squareColumn) {
     return [
@@ -298,13 +295,7 @@ for (let i = moves.length-1; i >= 0 ; i--) {
 
 function bishopMove(square,type,board) {
 
-  let allyPieces;
-  
-  if(type === 'black') {
-    allyPieces = 'RNBQKP'
-  }else {
-    allyPieces = 'rnbqkp'
-  }
+  const allyPieces = getAllyPieces(type);
   const moves = [];
 
   linearMoves(square,+1,+1,allyPieces,board).forEach(([l,c]) => moves.push([l,c]));
@@ -317,13 +308,7 @@ function bishopMove(square,type,board) {
 }
 
 function queenMove(square,type,board) {
-  let allyPieces;
-  
-  if(type === 'black') {
-    allyPieces = 'RNBQKP'
-  }else {
-    allyPieces = 'rnbqkp'
-  }
+  const allyPieces = getAllyPieces(type);
   const moves = [];
 
   linearMoves(square,+1,0,allyPieces,board).forEach(([l,c]) => moves.push([l,c]));
@@ -343,14 +328,9 @@ function kingMove(square,type,board) {
   
   let squareLine = Number(square.split('')[0]);
   let squareColumn = Number(square.split('')[1]);
-  let allyPieces;
+  const allyPieces = getAllyPieces(type);
   const moves = [];
   
-  if(type === 'black') {
-    allyPieces = 'RNBQKP';
-  }else {
-    allyPieces = 'rnbqkp';
-  }
 
 
 
@@ -380,8 +360,111 @@ function kingMove(square,type,board) {
 
 function pawnMove(square,type,board) {
 
+  let squareLine = Number(square.split('')[0]);
+  let squareColumn = Number(square.split('')[1]);
+  const allyPieces = getAllyPieces(type);
 
+  function boardFilter(l,c) {
+    if (l < 1 || l > 8 || c < 1 || c > 8){
+      return false;
+    }
+
+    const squarePiece = board[8-l][c-1];
+    return l > 0 && l < 9 && c > 0 && c < 9 && (squarePiece === '');
+
+  }
+
+
+  function captureFilter(l,c) {
+    if (l < 1 || l > 8 || c < 1 || c > 8){
+      return false;
+    }
+    const squarePiece = board[8-l][c-1];
+    return l > 0 && l < 9 && c > 0 && c < 9 && (!allyPieces.includes(squarePiece));
+  }
+
+
+  function getPawnMove(type) {
+    const moves = [];
+    let normalMoves = [];
+    let captureMoves = [];
+
+    if(type === 'white') {
+
+      normalMoves.push([squareLine + 1, squareColumn]);    
+
+      if(squareLine === 2){
+        normalMoves.push([squareLine + 2, squareColumn]);
+      }
+
+      normalMoves = normalMoves.filter(([l,c]) => boardFilter(l,c))
+
+      
+
+
+      captureMoves.push([squareLine + 1, squareColumn + 1]);
+      captureMoves.push([squareLine + 1, squareColumn - 1]);
+      captureMoves = captureMoves.filter(([l,c]) => captureFilter(l,c));
+
+
+    }else if(type === 'black') {
+      
+      normalMoves.push([squareLine -1, squareColumn]);  
+
+      if(squareLine === 7){
+        normalMoves.push([squareLine - 2, squareColumn]);
+      }
+
+      normalMoves = normalMoves.filter(([l,c]) => boardFilter(l,c))
+
+      
+
+
+      captureMoves.push([squareLine -1, squareColumn - 1]);
+      captureMoves.push([squareLine - 1, squareColumn + 1]);
+      captureMoves = captureMoves.filter(([l,c]) => captureFilter(l,c));
+    }
+
+    moves.push(...normalMoves,...captureMoves);
+
+    return moves;
+  }
+  
+  return getPawnMove(type);
+  
 
 }
 
+function resetBoard(board,pawns) {
+  pawns = {
+    p1: 0,
+    p2: 0,
+    p3: 0,
+    p4: 0,
+    p5: 0,
+    p6: 0,
+    p7: 0,
+    p8: 0,
+    P1: 0,
+    P2: 0,
+    P3: 0,
+    P4: 0,
+    P5: 0,
+    P6: 0,
+    P7: 0,
+    P8: 0,
+  };
 
+  board = [
+    ["R","N","B","Q","K","B","N","R"],//8
+    ["P","P","P","P","P","P","P","P"],//7
+    ["","","","","","","",""],//6
+    ["","","","","","","",""],//5
+    ["","","","","","","",""],//4
+    ["","","","","","","",""],//3
+    ["p","p","p","p","p","p","p","p"],//2
+    ["r","n","b","q","k","b","n","r"]//1
+  ];
+
+return board,pawns;
+}
