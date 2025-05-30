@@ -1,6 +1,6 @@
 //-------------CUIDA DOS BOARDS-------------------------
 
-const board = [
+const inicialBoard = [
     ["R","N","B","Q","K","B","N","R"],//8
     ["P","P","P","P","P","P","P","P"],//7
     ["","","","","","","",""],//6
@@ -17,8 +17,8 @@ const history = [];
 
 
 
-let previousBoard = board.map(row => [...row]);
-let actualBoard = board.map(row => [...row]);
+let previousBoard = inicialBoard.map(row => [...row]);
+let actualBoard = inicialBoard.map(row => [...row]);
 let nextBoard = [];
 boardHistory();
 
@@ -52,43 +52,48 @@ function possibleChange(piece,square) {
   
   nextBoard[8-squareLine][squareColumn-1] = '';
 
+  previousBoard = actualBoard.map(row => [...row]);
+
   moves.forEach(([l,c]) => {
     const possibleSquare = `.s-${l}${c}`;
     document.querySelector(possibleSquare).classList.add('highlight');
     
-    document.querySelector(possibleSquare).addEventListener('click', () => {
+  });
+  boardGenerate(actualBoard);
+
+  moves.forEach(([l,c]) => {
+    const possibleSquare = `.s-${l}${c}`;
+    const targetSquare = document.querySelector(possibleSquare);
+
+    
+    targetSquare.addEventListener('click', (event) => {
+      event.stopPropagation();
+      
+       moves.forEach(([linha,coluna]) => {
+        nextBoard[8-linha][coluna-1] = actualBoard[8-linha][coluna-1];
+
+      });
+
+
+      nextBoard[8-l][c-1] = piece;
+
+      actualBoard = nextBoard.map((row) => [...row]);
+      boardHistory();
+      boardGenerate(actualBoard);
+
 
       moves.forEach(([linha,coluna]) => {
-        /* 
-        OPERADOR TERNARIO
-        if(l === linha && c === coluna ) {
-          nextBoard[8-linha][coluna-1] = `${piece}`;
-        }else {
-          nextBoard[8-linha][coluna-1] = '';
-        } 
-        */
-        nextBoard[8-linha][coluna-1] = (l === linha && c === coluna) ? `${piece}` : '';
+        const possibleSquare = `.s-${linha}${coluna}`;
+        document.querySelector(possibleSquare).classList.remove('highlight');
       });
-      previousBoard = actualBoard.map(row => [...row]);
-      actualBoard = nextBoard.map(row => [...row]);
-      boardHistory();
-      
-      
-      //limpo o q eu coloquei, ou seja, tiro os highlight q adicionei nesse caso especifico
-      moves.forEach(([l,c]) => {
-        const possibleSquare = `.s-${l}${c}`;
-        document.querySelector(possibleSquare).classList.remove('highlight')
-        
-          
-      });
+      clearMoveListeners(moves);
+    },{once : true})
+   
+  })
 
-    }, {once: true});
-  });
+  
+  
 }
-
-
-
-
 
 
 
@@ -108,7 +113,13 @@ function boardHistory() {
 }
 
 
-
+function clearMoveListeners(moves) {
+  moves.forEach(([l,c]) => {
+    const square = document.querySelector(`.s-${l}${c}`);
+    const newSquare = square.cloneNode(true);
+    square.parentNode.replaceChild(newSquare,square);
+  })
+}
 
 
 

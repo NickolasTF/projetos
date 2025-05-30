@@ -17,7 +17,7 @@ function boardGenerate(board) {
       const coluna = j+1;
       const square = document.querySelector(`.s-${linha}${coluna}`);
 
-      square.innerHTML = board[i][j] // ${linha}${coluna}
+      square.innerHTML = board[i][j] // ${linha}${coluna}  aqui devo inserir a img correspondente a peça
 
     }
   }

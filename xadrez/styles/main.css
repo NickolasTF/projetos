@@ -40,7 +40,9 @@
 /* tem q fazer isso apenas quando tiver uma peça dentro desse quadrado */
 }
 
-
+.board > div > div.square.highlight {
+  background-color: green;
+}
 
 
 

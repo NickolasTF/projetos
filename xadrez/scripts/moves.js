@@ -62,18 +62,7 @@ function move(piece,square,board) {
 
 
 
-  // printBoard(possibleMoves)
-
-
-  function printBoard(board) {
-    for (let i = 0; i < 8; i++) {
-      const linha = 8 - i;
-      const row = board[i].map(cell => cell || '.').join(' ');
-      console.log(linha + ' ' + row);
-    }
-    console.log('  a b c d e f g h');
-  }
-
+  
 
   return possibleMoves;
 
