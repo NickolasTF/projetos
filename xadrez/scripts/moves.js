@@ -1,22 +1,12 @@
+/*
+---------------------MOVIMENTAÇÃO DAS PEÇAS--------------
+*/
+
 const whitePieces = 'rnbqkp'
 const blackPieces = 'RNBQKP'
 
-//qnd eu clicar eu vou pegar o innerHTML e colocar como primeiro parametro q passo pra função move, 
-
-//recebendo piece = 'N' \\\ square(chega s-44)=> '44' \\\ board atual
+//recebendo piece = 'N' \\\ square chega s-44 \\\ board atual
 function move(piece,square,board) {
-
-  const board = [
-  ["R","N","B","Q","K","B","N","R"],//8
-  ["P","P","P","P","P","P","P","P"],//7
-  ["","","","","","","",""],//6
-  ["","","","","","","",""],//5
-  ["","","","","","","",""],//4
-  ["","","","","","","",""],//3
-  ["p","p","p","p","p","p","p","p"],//2
-  ["r","n","b","q","k","b","n","r"]//1
-];
-
 
   const pieceFunction = {
     r: rookMove,
@@ -72,7 +62,7 @@ function move(piece,square,board) {
 
 
 
-  printBoard(possibleMoves)
+  // printBoard(possibleMoves)
 
 
   function printBoard(board) {
@@ -85,7 +75,7 @@ function move(piece,square,board) {
   }
 
 
-
+  return possibleMoves;
 
   /*
 
@@ -315,9 +305,6 @@ function kingMove(square,type,board) {
   const allyPieces = getAllyPieces(type);
   const moves = [];
   
-
-
-
   moves.push([squareLine + 1 , squareColumn + 1]);
   moves.push([squareLine + 1 , squareColumn]);
   moves.push([squareLine + 1 , squareColumn - 1]);
@@ -327,8 +314,6 @@ function kingMove(square,type,board) {
   moves.push([squareLine - 1 , squareColumn + 1]);
   moves.push([squareLine, squareColumn + 1]);
   
-
-
   function boardFilter(l,c) {
     if (l < 1 || l > 8 || c < 1 || c > 8){
       return false
@@ -338,7 +323,8 @@ function kingMove(square,type,board) {
     return l > 0 && l < 9 && c > 0 && c < 9 && (squarePiece === '' || !allyPieces.includes(squarePiece));
 
   }
-  return moves.filter(([l,c]) => boardFilter(l,c))
+
+  return moves.filter(([l,c]) => boardFilter(l,c));
 
 }
 
@@ -415,30 +401,10 @@ function pawnMove(square,type,board) {
   }
   
   return getPawnMove(type);
-  
 
 }
 
-function resetBoard(board,pawns) {
-  pawns = {
-    p1: 0,
-    p2: 0,
-    p3: 0,
-    p4: 0,
-    p5: 0,
-    p6: 0,
-    p7: 0,
-    p8: 0,
-    P1: 0,
-    P2: 0,
-    P3: 0,
-    P4: 0,
-    P5: 0,
-    P6: 0,
-    P7: 0,
-    P8: 0,
-  };
-
+function resetBoard(board) {
   board = [
     ["R","N","B","Q","K","B","N","R"],//8
     ["P","P","P","P","P","P","P","P"],//7
@@ -450,5 +416,5 @@ function resetBoard(board,pawns) {
     ["r","n","b","q","k","b","n","r"]//1
   ];
 
-return board,pawns;
+return board;
 }

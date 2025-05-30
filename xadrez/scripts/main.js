@@ -1,32 +1,34 @@
-//to querendo gerar as divs pelo JS e ai a div q tiver uma letra será clicavel
-
-// primeiro eu faço uma matriz com todas as peças, assim eu associo essa matriz com o tabuleiro(square-ij) dps faço o JS pra cada movimento de peça, vendo onde ela ta e onde ela pode ir dps eh so ver se ja tem uma peça la e fazer a relação
-
-
-
-
 /*
-posso passar isso aqui pra função move(), e ja gerar o tabuleiro por la, ou seja, a função move() fica responsavel por pegar os movimentor e gerar o tabuleiro ou passar pra outra q gere o tabuleiro, recebendo o board atual e o nextBoard()
+--------------------------MANIPULAÇÃO DA DOM----------------
+*/
+// ESSE ARQUIVO CUIDA DA LIGAÇAO ENTRE O HTML E O JS, OU SEJA AQUI EU VOU RECEBER OS BOARDS E MUDAR O HTML COM ELE
 
-const columns = 'abcdefgh';
 
-for (let i  = 0; i < 8; i++) {
+//PRECISO GERAR O TABULEIRO E APLICAR AS IDEIAS PARA AS MOVIMENTAÇÕES DE POSSIVEIS CASAS
 
-  for (let j = 0; j < 8; j++) {
-    
-    const linha = 8-i;
-    const coluna = j+1;
-    const square = document.querySelector(`.s-${linha}${coluna}`);
+//preciso lidar com o fato de serem diferentes o actualBoard e o nextBoard, o next tem todas as casas menos a da peça clicada e tem adicionado os possiveis lugares q ela vai
+function boardGenerate(board) {
 
-    square.innerHTML = board[i][j] // ${linha}${coluna}
+  for (let i  = 0; i < 8; i++) {
 
+    for (let j = 0; j < 8; j++) {
+      
+      const linha = 8-i;
+      const coluna = j+1;
+      const square = document.querySelector(`.s-${linha}${coluna}`);
+
+      square.innerHTML = board[i][j] // ${linha}${coluna}
+
+    }
   }
+}
 
-} */
+
+
 
 
 /*
--------------------------BOARDS EXEMPLOS-------------------------
+-------------------------BOARDS EXEMPLOS----------------------
 const board1 = [
   ['8a','8b','8c','8d','8e','8f','8g','8h'],
   ['7a','7b','7c','7d','7e','7f','7g','7h'],
@@ -73,6 +75,26 @@ const board = [
 ];
 
 */
+
+
+
+
+//to querendo gerar as divs pelo JS e ai a div q tiver uma letra será clicavel
+
+// primeiro eu faço uma matriz com todas as peças, assim eu associo essa matriz com o tabuleiro(square-ij) dps faço o JS pra cada movimento de peça, vendo onde ela ta e onde ela pode ir dps eh so ver se ja tem uma peça la e fazer a relação
+
+
+
+
+/*
+posso passar isso aqui pra função move(), e ja gerar o tabuleiro por la, ou seja, a função move() fica responsavel por pegar os movimentor e gerar o tabuleiro ou passar pra outra q gere o tabuleiro, recebendo o board atual e o nextBoard()
+
+
+
+ */
+
+
+
 
 
 
