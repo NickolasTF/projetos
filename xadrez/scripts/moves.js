@@ -352,7 +352,7 @@ function pawnMove(square,type,board) {
 
       normalMoves.push([squareLine + 1, squareColumn]);    
 
-      if(squareLine === 2){
+      if(squareLine === 2 && board[5][squareColumn - 1] === ''){
         normalMoves.push([squareLine + 2, squareColumn]);
       }
 
@@ -370,7 +370,7 @@ function pawnMove(square,type,board) {
       
       normalMoves.push([squareLine -1, squareColumn]);  
 
-      if(squareLine === 7){
+      if(squareLine === 7 && board[2][squareColumn - 1] ===''){
         normalMoves.push([squareLine - 2, squareColumn]);
       }
 
