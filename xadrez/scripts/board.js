@@ -11,8 +11,8 @@ const inicialBoard = [
     ["r","n","b","q","k","b","n","r"]//1
   ]; 
 
-// q q eu tenho eu passo pra move() a peça, o square e o board e consigo receber os possiveis movimentos dessa peça
-//apos cada mudança no tabuleiro chamar boardHistory() e no começo tbm, quando criadas as variaveis previousBoard,actualBoard,nextBoard
+let turn = 'white';
+
 const history = [];
 
 
@@ -23,9 +23,14 @@ let nextBoard = [];
 boardHistory();
 
 document.querySelector('.board').addEventListener('click', (event) => {
-    const piece = event.target.innerHTML;
+    const piece = event.target.dataset.piece;
     if(piece !== ''){
-      const square = event.target.className.split(' ')[2]; //s-34
+      const squareDiv = event.target.closest('.square');
+      const square = squareDiv.className.split(' ')[2]; //s-34
+      const isWhitePiece = piece === piece.toLowerCase();//jeito mais eficaz de ver se eh branca ou preta, melhor q o anterior com if/else
+      if((turn === 'white' && !isWhitePiece) || (turn === 'black' && isWhitePiece)) {
+        return;
+      }
       nextBoard = move(piece,square,actualBoard)
       possibleChange(piece,square);
     }
@@ -59,7 +64,6 @@ function possibleChange(piece,square) {
     document.querySelector(possibleSquare).classList.add('highlight');
     
   });
-  boardGenerate(actualBoard);
 
   moves.forEach(([l,c]) => {
     const possibleSquare = `.s-${l}${c}`;
@@ -87,6 +91,8 @@ function possibleChange(piece,square) {
         document.querySelector(possibleSquare).classList.remove('highlight');
       });
       clearMoveListeners(moves);
+      turn = turn === 'white' ? 'black' : 'white';
+      document.getElementById('turn').textContent = turn ==='white' ? 'Brancas jogam!' : 'Pretas jogam'
     },{once : true})
    
   })

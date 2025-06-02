@@ -12,7 +12,7 @@
   grid-template-rows: repeat(8,60px);
   border: 4px solid #000000;
   width: fit-content;
-  margin: 40px auto;
+  margin: 10px auto;
 }
 
 .square {
@@ -22,10 +22,11 @@
   align-items: center;
   justify-content: center;
   font-size: 36px;
+  box-sizing: border-box;
 }
 
 .square:hover {
-  cursor: pointer; /* tem q fazer isso apenas quando tiver uma peça dentro desse quadrado */
+  cursor: pointer;
 }
 
 
@@ -37,7 +38,8 @@
 }
 
 .square.highlight {
-  background-color: green;
+  background-color: rgba(0, 255, 0, 0.3);
+  box-shadow: inset 0 0 0 3px limegreen;
 }
 
 
