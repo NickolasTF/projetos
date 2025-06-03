@@ -17,5 +17,3 @@ for (let i = 0; i < 8; i++) {
   }
 
 }
-
-//me gerou problemas, pois cria estilos inline, q n da pra sobreescrever dps com CSS, vou resolver isso usando em CSS o nth-child

@@ -57,24 +57,7 @@ function move(piece,square,board) {
 
 
 
-
-
-
-
-
-  
-
   return possibleMoves;
-
-  /*
-
-  eu associo cada peça a um par da matriz ixj board
-  on click() eu passo a string associada como parametro pra k e daqui eu chamo a função correspondente ao movimento dessa peça
-
-  */
-
-  //e ai na função peçaMove eu retorno alguma coisa e aqui eu gero o HTML com o innnerHTML(da div pra qual a peça vai) = <img da peça> ou melhor posso fazer o click dar um highlight nas possiveis casas de movimentação, caso clique em alguma delas a peça vai pra la 
-
 
 }
 

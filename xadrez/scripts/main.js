@@ -28,7 +28,7 @@ function boardGenerate(board) {
       const square = document.querySelector(`.s-${linha}${coluna}`);
       const piece = board[i][j];
       if (piece) {
-        square.innerHTML = `<img src="/images/pieces/${pieceImage[piece]}.svg" alt="Piece" data-piece="${piece}">`;
+        square.innerHTML = `<img src="./images/pieces/${pieceImage[piece]}.svg" alt="Piece" data-piece="${piece}">`;
       } else {
         square.innerHTML = "";
       }
