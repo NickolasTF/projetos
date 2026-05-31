@@ -5,13 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Primeira equação de Maxwell</title>
   
-  <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+
+  <style>
+
+    body { 
+      font-family: Arial, sans-serif; 
+      text-align: center; 
+      background-color: white; 
+    }
+    .grafico { 
+      width: 80%; 
+      height: 600px; 
+      margin: 20px auto; 
+      background: white; 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    }
+  </style>
 
 
 </head>
 <body>
-  olaa
+
+  <h2>G1: Campo Vetorial D (Heatmap de Intensidade Dx)</h2>
+  <div id="grafico1" class="grafico"></div>
+
+  <h2>G2: Carga Numérica (Diferenças Finitas)</h2>
+  <div id="grafico2" class="grafico"></div>
+
+  <h2>G3: Carga Teórica (Analítica)</h2>
+  <div id="grafico3" class="grafico"></div>
+
+  <h2>G4: Erro Absoluto</h2>
+  <div id="grafico4" class="grafico"></div>
+
 
 </body>
 
