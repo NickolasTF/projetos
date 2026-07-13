@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabalho 2 - Condições de Fronteira</title>
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  <style>
+
+    :root {
+      --bg-color: #121212;
+      --surface: #1e1e1e;
+      --primary: #bb86fc;
+      --text-main: #e0e0e0;
+      --text-muted: #a0a0a0;
+    }
+    * { box-sizing: border-box; }
+    body {
+
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      margin: 0; padding: 20px;
+    
+    }
+        
+    .header {
+      text-align: center; 
+      margin-bottom: 30px; 
+    }
+    
+    .header h1 { 
+      color: var(--primary); 
+      margin-bottom: 5px; 
+    }
+        
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+        
+    .card h3 { 
+      margin-top: 0; 
+      text-align: center; 
+      color: #fff; 
+      font-size: 16px; 
+    }
+    
+        
+    #quiver-container { 
+      position: relative; 
+      width: 100%; 
+      height: 350px; 
+      background: #000; 
+      border: 1px solid #333;
+    }
+      
+    canvas { 
+      width: 100%; 
+      height: 100%; 
+      display: block; 
+    }
+        
+    .plotly-graph { 
+      width: 100%; 
+      height: 350px; 
+    }
+
+
+
+  </style>
+
+
+</head>
+<body>
+
+  <div class="header">
+
+    <h1>Análise de Campo - Capacitor Multicamada de Filme Fino (Opção B)</h1>
+    <p>Eletromagnetismo FEELT31405 | Malha: 300x300 | Anomalia Injetada</p>
+  </div>
+
+  <div class="dashboard">
+
+    <!-- G1: Quiver Plot -->
+    <div class="card">
+
+      <h3>G1: Quiver Plot do Campo D</h3>
+      
+      <div id="quiver-container">
+
+        <canvas id="quiverCanvas"></canvas> 
+
+      </div>
+
+        
+    </div>
+
+        
+    <!-- G2: Salto Dn e Rho_s -->
+        
+    <div class="card">
+            
+      <h3>G2: ΔD<sub>n</sub>(s) Numérico vs ρ<sub>s</sub>(s) Teórico</h3>
+            
+      <div id="plot-dn" class="plotly-graph"></div>
+        
+    </div>
+
+        
+    <!-- G3: Salto Et -->
+        
+    <div class="card">
+            
+      <h3>G3: Componente Tangencial ΔE<sub>t</sub></h3>
+            
+      <div id="plot-et" class="plotly-graph"></div>
+        
+    </div>
+
+        
+    <!-- G4: Heatmap de Erro -->
+        
+    <div class="card">
+            
+      <h3>G4: Heatmap de Erro Absoluto (|Num - Teórico|)</h3>
+            
+      <div id="plot-error" class="plotly-graph"></div>
+        
+    </div>
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
