@@ -91,8 +91,8 @@ for (let j = 0; j < Ny; j++) {
   let y = y_arr[j];
             
   // Lados da interface
-  let x_esq = x_arr[interface_idx]; 
-  let x_dir = x_arr[interface_idx + 1] || x_arr[interface_idx]; // previne out of bounds
+  let x_esq = d1 - 1e-12; // 1 picômetro antes da fronteira
+  let x_dir = d1 + 1e-12; // 1 picômetro depois da fronteira
 
   let campo_1 = calculateField(x_esq, y);        
   let campo_2 = calculateField(x_dir, y);
